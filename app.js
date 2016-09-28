@@ -1,17 +1,11 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-/*
-
-They say great science is built on the shoulders of giants. Not here.
-We do all our science from scratch! No hand holding
-
-*/
-
-//App
 class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.saveStatement = this.saveStatement.bind(this);
+    // this.saveStatement = this.saveStatement.bind(this);
   }
 
 	saveStatement() {
@@ -42,20 +36,19 @@ class App extends React.Component {
 					<input type="text" placeholder="The color of my car" ref={(r) => this.inputStatement = r}/>
 					<span>is</span>
 					<input type="text" placeholder="white" ref={(r) => this.inputAnswer = r } />
-					<button onClick={this.saveStatement}>save</button>
+					<button onClick={() => this.saveStatement()}>save</button>
 				</div>
 				<div>
 					<p>Question</p>
 					<input type="text" />
-					<button onClick={this.handleAsk}>ask</button>
+					<button onClick={() => this.handleAsk()}>ask</button>
 				</div>
 			</div>
     );
   }
 }
 
-	ReactDOM.render(
-    <App data={testData} />,
-    document.getElementById('app')
-	);
-});
+ReactDOM.render(
+  <App />,
+  document.getElementById('app')
+);
