@@ -1,62 +1,71 @@
-var natural = require('natural'),
-var app = require('express')();
+var natural = require('natural');
+var express = require('express');
+var app = express();
+//var app = require('express')();
+var bodyParser = require('body-parser');
 
-app.post('/save', function(req, res) {
-	console.log(req);
+
+var jsonParser = bodyParser.json();
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+var cl = new natural.BayesClassifier();
+
+app.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+});
+
+app.post('/query', jsonParser, function(req, res) {
+	if (!req.body) return res.sendStatus(400);
+	/*
+	natural.BayesClassifier.load('cl.json', null, function(err, classifier) {
+		res.json({'answer': classifier.classify(req.body.q)});
+	});*/
+	console.log(req.body);
+	console.log(req.body.q);
+	//
+	res.json({'answer': cl.classify(req.body.q) });
+})
+
+
+
+app.post('/save', jsonParser, function(req, res) {
+	if (!req.body) return res.sendStatus(400);
+
+	cl.addDocument(req.body.s, req.body.a);
+	cl.train();
+
+	/*
+	natural.BayesClassifier.load('cl.json', null, function(err, classifier) {
+		classifier.addDocument(req.body.s, req.body.a);
+		classifier.train();
+		classifier.save('cl.json', function(err, cl) {});
+		cl = classifier;
+	});*/
+
+	cl.save('cl.json', function(err, cl) {
+	    // the cl is saved to the cl.json file!
+	});
+
 	res.json({ 'test': false });
 })
 
-app.listen(3000);
+app.use('/', express.static('.'));
 
-cl = new natural.BayesClassifier();
+app.listen(8080);
+
+
+
 
 cl.events.on('trainedWithDocument', function (obj) {
-	//console.log("\n");
-	//console.log(obj);
-	//console.log("\n");
+	console.log("\n");
+	console.log(obj);
+	console.log("\n");
 	/* {
 	*   total: 23 // There are 23 total documents being trained against
 	*   index: 12 // The index/number of the document that's just been trained against
 	*   doc: {...} // The document that has just been indexed
 	*  }
 	*/
-});
-
-cl.addDocument("the name of chris' dog", 'tucker')
-cl.addDocument('sloanes favorite food', 'mac n cheese');
-cl.addDocument('sloanes cat name is', 'pablo')
-cl.addDocument('the color of my nissan sentra', 'white');
-cl.addDocument('car color', 'white');
-cl.addDocument('car make', 'nissan');
-cl.addDocument('car year', '2003');
-cl.addDocument('car model', 'sentra');
-cl.addDocument('phone brand', 'iphone');
-cl.addDocument('phone model', '6s');
-
-cl.addDocument('laptop', 'sony');
-cl.addDocument('laptop brand', 'sony');
-cl.addDocument('brand of', 'sony');
-
-cl.addDocument('laptop color', 'black');
-cl.addDocument('color of laptop', 'black');
-cl.addDocument('drivers license', '12345');
-cl.addDocument('license plate', 'abcdef');
-cl.addDocument('license plate on nissan sentra 2003', 'abcdef');
-
-cl.train();
-
-console.log(cl.classify('what is the color of my car'));
-console.log(cl.classify('what is the year of my car'));
-
-console.log(cl.classify("what's the model of my phone"));
-
-console.log(cl.classify('what color is my sentra?'));
-console.log(cl.classify('what color is my laptop'));
-
-console.log(cl.classify('my license plate number'))
-console.log(cl.classify('whats my drivers license'))
-console.log(cl.classify('chris '));
-
-cl.save('cl.json', function(err, cl) {
-    // the cl is saved to the cl.json file!
 });
