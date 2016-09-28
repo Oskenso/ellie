@@ -1,24 +1,14 @@
-/*
-npm install --save natural prompt
-*/
-
-
-var express = require('express');
-var app = express();
-
+var natural = require('natural'),
+var app = require('express')();
 
 app.post('/save', function(req, res) {
 	console.log(req);
-	res.json({'test': false});
+	res.json({ 'test': false });
 })
+
 app.listen(3000);
 
-
-var natural = require('natural'),
-
 cl = new natural.BayesClassifier();
-
-
 
 cl.events.on('trainedWithDocument', function (obj) {
 	//console.log("\n");
@@ -31,12 +21,6 @@ cl.events.on('trainedWithDocument', function (obj) {
 	*  }
 	*/
 });
-
-//cl.addDocument('i am long qqqq', 'buy');
-//cl.addDocument('buy the q\'s', 'buy');
-//cl.addDocument('short gold', 'sell');
-//cl.addDocument('sell gold', 'sell');
-
 
 cl.addDocument("the name of chris' dog", 'tucker')
 cl.addDocument('sloanes favorite food', 'mac n cheese');
@@ -73,19 +57,6 @@ console.log(cl.classify('my license plate number'))
 console.log(cl.classify('whats my drivers license'))
 console.log(cl.classify('chris '));
 
-//console.log(cl.getClassifications('i am long copper'));
-
-
-//cl.addDocument(['sell', 'gold'], 'sell');
-
 cl.save('cl.json', function(err, cl) {
     // the cl is saved to the cl.json file!
 });
-
-/*
-natural.BayesClassifier.load('cl.json', null, function(err, cl) {
-    console.log(cl.classify('long SUNW'));
-    console.log(cl.classify('short SUNW'));
-});
-
-*/
