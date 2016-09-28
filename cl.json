@@ -1,0 +1,166 @@
+{
+    "classifier": {
+        "classFeatures": {
+            "2003": {
+                "11": 2,
+                "12": 2
+            },
+            "12345": {
+                "17": 2,
+                "18": 2
+            },
+            "tucker": {
+                "1": 2,
+                "2": 2,
+                "3": 2
+            },
+            "mac n cheese": {
+                "4": 2,
+                "5": 2,
+                "6": 2
+            },
+            "pablo": {
+                "1": 2,
+                "4": 2,
+                "7": 2
+            },
+            "white": {
+                "8": 3,
+                "9": 2,
+                "10": 2,
+                "11": 2
+            },
+            "nissan": {
+                "11": 2
+            },
+            "sentra": {
+                "11": 2,
+                "13": 2
+            },
+            "iphone": {
+                "14": 2,
+                "15": 2
+            },
+            "6s": {
+                "13": 2,
+                "14": 2
+            },
+            "sony": {
+                "15": 3,
+                "16": 3
+            },
+            "black": {
+                "8": 3,
+                "16": 3
+            },
+            "abcdef": {
+                "0": 2,
+                "9": 2,
+                "10": 2,
+                "18": 3,
+                "19": 3
+            }
+        },
+        "classTotals": {
+            "2003": 2,
+            "12345": 2,
+            "tucker": 2,
+            "mac n cheese": 2,
+            "pablo": 2,
+            "white": 3,
+            "nissan": 2,
+            "sentra": 2,
+            "iphone": 2,
+            "6s": 2,
+            "sony": 4,
+            "black": 3,
+            "abcdef": 3
+        },
+        "totalExamples": 19,
+        "smoothing": 1
+    },
+    "docs": [{
+        "label": "tucker",
+        "text": ["name", "chri", "dog"]
+    }, {
+        "label": "mac n cheese",
+        "text": ["sloan", "favorit", "food"]
+    }, {
+        "label": "pablo",
+        "text": ["sloan", "cat", "name"]
+    }, {
+        "label": "white",
+        "text": ["color", "nissan", "sentra"]
+    }, {
+        "label": "white",
+        "text": ["car", "color"]
+    }, {
+        "label": "nissan",
+        "text": ["car"]
+    }, {
+        "label": "2003",
+        "text": ["car", "year"]
+    }, {
+        "label": "sentra",
+        "text": ["car", "model"]
+    }, {
+        "label": "iphone",
+        "text": ["phone", "brand"]
+    }, {
+        "label": "6s",
+        "text": ["phone", "model"]
+    }, {
+        "label": "sony",
+        "text": ["laptop"]
+    }, {
+        "label": "sony",
+        "text": ["laptop", "brand"]
+    }, {
+        "label": "sony",
+        "text": ["brand"]
+    }, {
+        "label": "black",
+        "text": ["laptop", "color"]
+    }, {
+        "label": "black",
+        "text": ["color", "laptop"]
+    }, {
+        "label": "12345",
+        "text": ["driver", "licens"]
+    }, {
+        "label": "abcdef",
+        "text": ["licens", "plate"]
+    }, {
+        "label": "abcdef",
+        "text": ["licens", "plate", "nissan", "sentra", "2003"]
+    }],
+    "features": {
+        "2003": 1,
+        "name": 2,
+        "chri": 1,
+        "dog": 1,
+        "sloan": 2,
+        "favorit": 1,
+        "food": 1,
+        "cat": 1,
+        "color": 4,
+        "nissan": 2,
+        "sentra": 2,
+        "car": 4,
+        "year": 1,
+        "model": 2,
+        "phone": 2,
+        "brand": 3,
+        "laptop": 4,
+        "driver": 1,
+        "licens": 3,
+        "plate": 2
+    },
+    "stemmer": {},
+    "lastAdded": 18,
+    "events": {
+        "domain": null,
+        "_events": {},
+        "_eventsCount": 1
+    }
+}
